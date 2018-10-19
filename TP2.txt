@@ -1,0 +1,380 @@
+@prefix : <http://example.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix schema: <http://schema.org/>.
+@prefix wiki: <https://www.wikidata.org/wiki/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix event: <http://purl.org/NET/c4dm/event.owl#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix dbr:	<http://dbpedia.org/resource/> .
+@prefix dbp: <http://dpedia.org/page/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema/>.
+@prefix yago: <http://dbpedia.org/class/yago/>.
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+
+###### TBox - Classes
+
+#
+# HistoricalBuilding
+# 	| 
+#          :PoliticalBuilding
+#          |
+#          :Bibliotheque  
+#          |
+#	:Manor
+
+:HistoricalBuilding
+a rdfs:Class ;
+rdfs:label 
+"Bâtiment historique"@fr ,
+"Historical building"@en ;
+rdfs:comment "Classe regroupant tous les bâtiments historiques (Églises, Prisons, Bibliothèques etc.)"@fr ;
+rdfs:subClassOf 
+dbo:HistoricBuilding ,
+schema:LandmarksOrHistoricalBuildings,
+schema:Organization.
+
+:Bibliotheque
+a rdfs:Class ;
+rdfs:label
+"Bibliothèque historique"@fr,
+"Historical library"@en ;
+rdfs:comment "Classe regroupant tous les bibliothèques historiques"@fr;
+rdfs:subClassOf
+:HistoricalBuilding.
+
+:PoliticalBuilding
+	a rdfs:Class ;
+	rdfs:label 
+		“Bâtiment politique”@fr ,
+		“Political Building“@en ;
+	rdfs:comment “Classe regroupant tous les bâtiments politiques (parlement, assemblée nationale, ministère)“@fr ;
+	rdfs:subClassOf :HistoricalBuilding.
+
+:PatrimonialSite
+	a rdfs:Class ;
+	rdfs:label 
+		“Site patrimonial“@fr ,
+		“Patrimonial site“@en ;
+	rdfs:comment “Classe regroupant les sites patrimoniaux“@fr
+	rdfs:subClassOf :HistoricalBuilding.
+
+
+:NationialSite
+	a rdfs:Class ;
+	rdfs:label 
+		“Site national“@fr ,
+		“National site“@en ;
+	rdfs:comment “Classe regroupant les sites nationaux“@fr
+	rdfs:subClassOf :HistoricalBuilding.
+
+:Manor
+a rdfs:Class ;
+rdfs:label 
+"Manoir"@fr ,
+"Manor"@en ;
+rdfs:comment "Habitation souvent ancienne et de caractère, d’une certaine importance, entourée de terres. "@fr ;
+rdfs:subClassOf 
+:HistoricalBuilding,
+
+:Place
+	a rdfs:Class ;
+rdfs:label 
+"Lieu"@fr ,
+"Place"@en ;
+rdfs:comment "Classe regroupant les informations de géolocalisation d’un bâtiment"@fr ;
+rdfs:subClassOf 
+schema:Place,
+dbo:Place.
+
+
+
+:Architect
+	a rdfs:Class ;
+	rdfs:label 
+		“Architecte“@fr ,
+		“Architect“@en ;
+	rdfs:comment “Classe représentant les architectes de bâtiments“@fr ;
+	rdfs:subClassOf 
+Schema:Person,
+dbo:Architect ;
+
+
+:Coordinates   
+	a rdfs:Class ;
+	rdfs:label 
+		“Coordonnées géographiques“@fr ,
+		“Geographical coordinates“@en ;
+	rdfs:comment “Sous classe de Schema:GeoCoordinates pour représenter les coordonnées géographiques“@fr
+	rdfs:subClassOf Schema:GeoCoordinates ;
+
+
+#
+# HistoricalBuildingEvent
+# 	| 
+#	:HistoricalBuildingConstruction
+
+:HistoricalBuildingEvent
+a rdfs:Class ;
+rdfs:label 
+"Evenement de bâtiment historique"@fr ,
+"Historical building Event"@en ;
+rdfs:comment "Classe regroupant tous les évènements en lien avec un bâtiment historique (Construction, destruction, incendie etc.)"@fr ;
+rdfs:subClassOf schema:Event.
+
+:HistoricalBuildingConstruction
+	a rdfs:Class ;
+rdfs:label 
+"Construction de bâtiment historique"@fr ,
+"Historical building Construction"@en ;
+rdfs:comment "Classe regroupant tous les évènements de construction de bâtiment historique"@fr ;
+rdfs:subClassOf :HistoricalBuildingEvent.
+
+
+# Style
+#Status
+#HeritageValue
+
+:Style 
+a rdfs:Class ;
+Rdfs:label 
+“Style architectural d’une construction”@fr ,
+“Architectural style of a building”@en ;
+Rdfs:comment “Classe regroupant tous les styles architecturaux des constructions”@fr .
+
+
+	
+:Status
+a rdfs:Class ;
+Rdfs:label 
+“Statut du site immobilier patrimonial”@fr ,
+“Status of heritage site”@en ;
+Rdfs:comment “Classe regroupant tous les statuts des sites immobiliers patrimoniaux (Classement, désignation)”@fr .
+ 
+:HeritageValue
+	a rdfs:Class ;
+Rdfs:label 
+“Valeur patrimoniale des sites immobiliers”@fr ,
+“Building heritage value”@en ;
+Rdfs:comment “Classe regroupant les valeurs patrimoniales des sites immobiliers (architecturale, historique, artistique)”@fr .
+
+
+:PublicFunction 
+a rdfs:Class;
+rdfs:label 
+"Fonction occupé par un bâtiment"@fr ,
+"Function occupy by a building"@en ;
+	rdfs:comment "Fonction occupée par un bâtiment. Ex: École primaire, Mairie, Bureau d’enregistrement, etc."@fr.
+
+
+###### RBox - Relations
+
+:historicalBuildingName a rdf:Property;
+	rdfs:domain :HistoricalBuilding;
+	# Le range pourrait devenir une forme d'événement si le nom du bâtiment change dans le temps
+	rdfs:range xsd:string;
+	rdfs:label 
+"Nom du batiment historique"@fr ,
+"Historical building’s name"@en ;
+	rdfs:comment "relation entre un bâtiment historique et le littéral contenant son nom"@fr.
+
+:historicalBuildingPlace a rdf:Property;
+	rdfs:domain :HistoricalBuilding;
+	rdfs:range :Place;
+	rdfs:label 
+"Lieu d’un bâtiment historique"@fr ,
+"Historical building’s place"@en ;
+	rdfs:comment "relation entre un bâtiment historique et l’endoit où il se situe"@fr.
+
+:historicalPublicFunction 
+a rdf:Property;
+rdfs:domain :HistoricalBuilding;
+rdfs:range :PublicFunction; # A voir ici. La Class pourrait être revue
+rdfs:label 
+"Relation entre une Fonction publique et un bâtiment historique"@fr ,
+"Function occupy by a Historical building"@en ;
+	rdfs:comment "relation entre un bâtiment historique et une fonction qu’il a occupé dans le passé. Ex: École primaire, Mairie, Bureau d’enregistrement, etc."@fr.
+
+
+:constructedBy
+	a rdf:Property ;
+	rdfs:domain :HistoricalBuilding ;
+	rdfs:range :Architect ;
+	rdfs:label
+		“Est construit par“@fr ,
+		“Was constructed by“@en ;
+	rdfs:comment “relation entre un bâtiment historique et l’architecte qui l’a construit“@fr ;
+
+:from
+	a rdf:Property ;
+	rdfs:domain schema:Thing;
+	rdfs:range time:Instant ;
+	rdfs:label
+		“A pour début“@fr ,
+		“Has for beginning“@en ;
+	rdfs:comment “relation entre un quelque chose et son début“@fr ;
+
+:to
+	a rdf:Property ;
+	rdfs:domain schema:Thing;
+	rdfs:range  time:Instant;
+	rdfs:label
+		“A pour fin“@fr ,
+		“Has for end“@en ;
+	rdfs:comment “relation entre un quelque chose et sa fin“@fr ;
+	
+:moment
+	a rdf:Property ;
+	rdfs:domain :HistoricalBuildingEvent ;
+	rdfs:range xsd:Date;
+	rdfs:label
+		“A pour instant“@fr ,
+		“Has for instant“@en ;
+	rdfs:comment “relation entre un évènement et son occurence“@fr ;
+
+:hasStatus 
+a rdf:Property;
+rdfs:label
+	“A pour statut“@fr ,
+		“Has status“@en ;
+
+            rdfs:domain :HistoricalBuilding;
+            rdfs:range :Status;
+            rdfs:comment "Relation entre un bâtiment historique et son statut ".
+
+
+:hasArchitecturalStyle
+	a rdf:Property ;
+	rdfs:domain :HistoricalBuilding ;
+	rdfs:range :Style;
+	rdfs:label
+		“A pour style architectural“@fr ,
+		“Has for architectural style“@en ;
+	rdfs:comment “relation entre un bâtiment et son style architectural“@fr ;
+	rdfs:subProperty dbo:architecturalStyle ;
+
+:rename a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range schema:Organization;
+    	rdfs:label "other name"@en;
+    	rdfs:comment "change name of the building"@en.
+ 
+ 
+:statut a rdf:Property;
+    	rdfs:domain schema:Organization;
+    	rdfs:range schema:Organization;
+    	rdfs:label "statut"@fr;
+    	rdfs:comment "statut de l edifice"@fr.
+ 
+:cible a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range xsd:string;
+    	rdfs:label "cible"@fr;
+    	rdfs:comment "enumere les categories cibles"@fr.
+ 
+:reconstructed a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range schema:Organization;
+    	rdfs:label "reconstructed "@en;
+    	rdfs:comment "the building was reconstructed"@en.
+
+:renovated a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range schema:Organization;
+    	rdfs:label "renovate "@en;
+    	rdfs:comment "the building was renovated"@en.
+ 
+:constructed a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range xsd:time;
+    	rdfs:label "has been constructed"@en;
+    	rdfs:comment "the date of the construction"@en.
+ 
+:opened a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range xsd:time;
+    	rdfs:label "has been opened"@en;
+    	rdfs:comment "the date of the initiation"@en.
+ 
+:conçu a rdf:Property;
+    	rdfs:domain schema:Organization;
+        	rdfs:range schema:Organization;
+    	rdfs:label "a ete conçu"@fr;
+    	rdfs:comment "informations sur la conception de l edifice"@fr.
+
+:hasArchitecturalStructure
+ a rdf:Property;    
+rdfs:label 
+“A pour structure architecturale”@fr,
+“Has architectural structure”@en;
+rdfs:domain :HistoricalBuilding;
+rdfs:range :HistoricalBuilding;
+rdfs:comment "Relation entre l'ensemble des composants de l'architecture du site et le site"@fr.
+
+:hasPlan 
+  a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "Plan au sol de la basilique".
+:aGroupement a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aSaillie a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aFondation a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aElevation a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aToit a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aPortePrincipale a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aPorte a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aFenetre a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aElementArchitecturaux a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aFacade a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aForme a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure ;
+    rdfs:range dbo:ArchitecturalStructure;
+    rdfs:comment "".
+:aClassement a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure;
+    rdfs:range event:Event;
+    rdfs:comment "".
+:aDesignation a rdf:Property;
+    rdfs:domain dbo:ArchitecturalStructure;
+    rdfs:range event:Event;
+    rdfs:comment "".
+:aElementCaracteristique a rdf:Property;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing;
+    rdfs:comment "Propriété pour ajouter un élément caracteristique la basilique".
+
+
+
+
