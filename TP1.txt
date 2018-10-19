@@ -1,0 +1,593 @@
+@prefix : <http://example.org/92771#> .
+@prefix db: <http://example.org/> .
+@prefix p: <http://example.org/properties#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/page/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix moac: <http://observedchange.com/moac/ns#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+
+db:92771  a dbo:Buidling ;
+		dbp:status dbr:Cathedral ;
+		p:isRegsitredIn	:endroitArcheologiquesQuebec ;
+        rdfs:label	 "Basilique-cathedrale de notre dame de Quebec"@fr ;
+		dbo:buildingStartYear  "1647"^^xsd:gYear ;
+		dbo:buildingEndYear    "1650"^^xsd:gYear ;
+		p:hasStructure    :StructureArichitecural ;
+		dbo:religiousOrder   dbr:Catholicism ; 
+		dbo:dateUnveiled  "1647"^^xsd:gYear ;
+		p:hasLocation   :Emplacement  ;
+		p:isPartOf      :religiousInstitutionnelCore, :endroitHistoriqueQuebec ;
+		p:hasStatus	   :Status ;
+		p:hasValue	   :valeurPatrimoniale ;
+		p:hasHistoricalInfos :historicalInfos;
+	    foaf:isPrimaryTopicOf     <http://www.patrimoine-culturel.gouv.qc.ca/rpcq/detail.do?methode=consulter&id=92771&type=bien#.W6T8u-hKhyx> ;
+		foaf:based_near   db:103126, db:92787, db:102588, db:104011 ;
+		p:patrimoineImmobiliéAssocié db:93523 ;
+		p:patrimoineMobiliéAssocié db:163130, db:163131, db:163132, db:111431 ;
+		p:plaquesCommémoratives db:99402, db:99162 ;
+		p:EvenementsAssociés db:7394, db:25650, db:26097 ;
+		p:groupesAssociés db:7340, db:17474, db:17475 ;
+		p:personnesAssociés  db:7227, db:7228, db:7230, db:7233, db:7256, db:7363, db:7382, db:7686, db:7931, db:8003, 
+							db:8104, db:8122, db:8235, db:8551, db:9011, db:12000, db:10159, db:10289, db:16165, db:24567,
+							db:26765, db:27284 .
+							
+
+:endroitHistoriqueQuebec  a     dbo:territory ; 
+                        rdfs:comment "Le Québec est une province majoritairement francophone à l'est du Canada.
+							Elle comprend 2 villes dynamiques au sud, reliées par le chemin du Roy, route qui longe le Saint-Laurent."@fr.
+
+:endroitArcheologiquesQuebec   a     dbo:territory  ; 
+							rdfs:comment "le patrimoine archéologique est constitué de sites archéologiques.
+							laissés sur place par des humains, après l'occupation d'un lieu."@fr .
+								  
+:Emplacement  a geo:SpatialThing ;
+			  rdfs:label   "Décrit l'emplacement du patrimoine et ce qui l'entoure"@fr ;
+			  p:mrc  dbr:Quebec ;
+			  dbo:municipality   dbr:Quebec ; 
+			  dbo:country    dbr:Canada ; 
+			  dbr:address     "Buade"@fr ;
+			  p:neighbourhood  "old quebec" ; 
+			  geo:lat     "46.81373889" ^^xsd:float ;
+			  geo:long 	"-71.20583333" ^^xsd:float ;
+			  p:dC       "lot 1213132" ^^xsd:string .
+				  
+:religiousInstitutionnelCore   a    dbo:territory ;  
+			                   rdfs:label   "Site patrimonial du Vieux-Québec"@fr ;
+							   rdfs:comment "Le site patrimonial du Vieux-Québec est un territoire urbain d'environ 135 hectares"@fr ; 
+							   p:mrc  :Quebec ;
+							   p:hasSurface	"135"^^xsd:integer ;
+							   dbo:country    dbr:Canada ;
+							   dbo:municipality   dbr:Quebec .    		
+				
+:structureArchitectural 	a			dbo:ArchitecturalStructure ;  
+              rdfs:label "Decrit la stucture de ce building "@fr ;
+			  p:hasComponent    :sacristie, :chapelle, :massif, :nef, :parvis, :tourClocher, :crypte ;
+			  dbo:floorCount	   "2"^^xsd:integer ; 
+			  p:hasFacade    :facade ;
+			  dbo:constructionMaterial  "pierre"@fr ;
+			  p:hasPlan 			:planStructure ;
+			  dbo:rebuildingYear  "1923"^^xsd:gYear ;
+			  p:rebuildingEndYear "1930"^^xsd:gYear ;
+			  p:reconstruitpar    db:7233  , db:7363 , db:8551 , db:7256 , 
+								 db:8003  , db:7382 ,  db:7931 .
+			  
+:crypte 		a 		dbo:Building ;
+				rdfs:label   "Cryptes"@fr ;
+			    dbo:architect db:12000 ;
+				dbo:restingPlace  :gouv1, :gouv2 , :gouv3, :gouv4 ; 
+				rdfs:comment   "ne crypte est un des éléments constitutifs des églises chrétiennes"@fr ;
+			    dbo:buildingStartYear  "1959 "^^xsd:gYear .
+			  
+:tourClocher    a		dbo:Building ;
+				rdfs:label   "La tour-clocher sud"@fr ;
+				dbo:rebuildingYear  "1768"^^xsd:gYear ; 
+				p:rebuildingEndYear  "1771"^^xsd:gYear ;
+				dbo:dateUnveiled  	"1800"^^xsd:gYear ;
+				dbo:architect :8551 ;
+			    p:restaurationYear   "1922"^^xsd:gYear ;
+				p:victimOf  	    :incident .
+			   
+:planStructure 		a			foaf:Document ; 
+			        rdfs:comment "utilisé pour les églises en croix latine. Il consiste à allonger la nef par la façade, 
+					qui est alors renouvelée, et à l'élargir en prolongeant les extrémités du transept."@fr ;
+					dbo:architect  db:7363.
+							
+:incident   a moac:Incident ;
+			rdfs:label "Incendie de 1922"@fr ;
+			rdfs:comment  "La tour-clocher, et le decor ont été restaurée après l'incendie de 1922." @fr ;
+			moac:Emergency 	moac:Fire ; 
+			moac:date     	"1922"^^xsd:gYear .
+				
+:parvis 		a 			dbo:Building ;
+				rdfs:comment  "Précédée d'un parvis délimité par un mur en pierre surmonté d'une clôture en fonte." @fr ;
+				p:delimitedBy	:wallcather.
+
+:wallcather		a 			dbo:Building ;
+				p:surmontedBy	:cloture ;
+				dbo:constructionMaterial	"pierre"@fr.	
+				
+:cloture		a 			dbo:Building ;
+				dbo:constructionMaterial    "fonte"@fr ;
+			    dbo:architect db:7227 ;
+			    dbo:buildingStartYear  "1857 "^^xsd:gYear.
+  
+:massif 			a 			dbo:Building ;
+					rdfs:comment  "massif antérieur comprenant deux tours et un vestibule"@fr ;
+					dbo:floorCount 	"2"^^xsd:integer ; 
+					p:hasComponent  :vestibule .	
+					
+:vestibule			a 		dbo:Building .	
+					
+:nef 				a 			dbo:ReligiousBuilding ;
+					p:hasForme	"rectangulaire"@fr ;
+					rdfs:comment     "formée d'un vaisseau central et de bas-côtés ainsi que d'un choeur plus étroit terminé par une abside en hémicycle"@fr .  
+					
+:sacristie 			a 			dbo:ReligiousBuilding ;
+					rdfs:comment 	"La sacristie est l'annexe d'une église où le prêtre se prépare pour célébrer les cérémonies liturgiques"@fr .
+					
+					
+:chapelle			a 			dbo:ReligiousBuilding ;
+					rdfs:comment	"une chapelle est un édifice religieux et lieu de culte chrétien" @fr.
+					
+:facade               a      dbo:ArchitecturalStructure ; 
+					  rdfs:comment 	"Façade monumentale"@fr ;
+					  dbo:architect db:7230 ;
+					  dbo:buildingStartYear  "1843"^^xsd:gYear ;
+					  dbo:architecturalStyle dbr:Neoclassical_architecture .
+
+:Status			a 		     owl:Thing  ;
+				rdfs:comment "Décrit le status du bâtiment"@fr ;
+				p:hasClassement	:classementEvent ;
+				p:hasDesignation	:designationEvent ;
+				p:hasDeclaration :declarationEvent ;
+				p:hasBecame 		:firstCatherdraleEvent .
+
+:firstCatherdraleEvent           a			event:Event ; 
+				foaf:label "La première cathédrale de l'immense diocèse de Québec" ;
+				rdfs:comment  "le jour ou l'église a été classée comme  1ere cathédrale" @fr ;
+				event:agent 	db:7686 ; 
+				event:time     	"1674"^^xsd:gYear . 		
+				
+:classementEvent 			a			event:Event ; 
+				foaf:label "Immeuble patrimonial" ;
+				rdfs:comment  "le jour ou la cathedrale a été classée comme Immeuble patrimonial" @fr ;
+				event:agent 	:mcc ; 
+				event:time 		"1966-06-23T12:00:00"xsd:dateTime .  
+				
+:designationEvent			a			event:Event ; 
+				foaf:label  "Lieu historique national du Canada" ;
+				rdfs:comment  "le jour ou la cathedrale a été declarée comme Lieu historique national du Canada"@fr ;
+				event:agent 	:clmhc ; 
+				event:time      "1989-01-0123T12:00:00"xsd:dateTime . 
+				
+:declarationEvent		a			event:Event ; 
+				foaf:label  "Situé dans un site patrimonial" ;
+				rdfs:comment  "le jour ou la cathedrale a été situé dans un site patrimoniale"@fr ;
+				event:agent 	:GouvQuébec ; 
+				event:time      "1989-01-0123T12:00:00"xsd:dateTime . 	
+				
+:valeurPatrimoniale  a    owl:Thing ; 
+					 rdfs:comment "Décrit la valeur patrimoniale du bâtiment"@fr ;
+					 p:hasEdifice 		:edifice ; 
+					 dbo:hasInsidePlace  :decor ;
+					 rdfs:comment "constitue l'un des principaux symboles de l'Église catholique au Québec et au Canada."@fr .
+					 
+:decor 				a		dbo:Builiding ; 
+					p:reconstitution	:process ; 
+					dbo:rebuildingYear  "1923"^^xsd:gYear ; 
+				    p:rebuildingEndYear  "1930"^^xsd:gYear ;
+					p:hasComponent  :retable, :chaire, :bancOuvre , :autel. 
+					
+:process 	a 	event:Event;
+			rdfs:comment   "Pour dire que le decor a été reconstruit par on a besoin d'un evenement "@fr;
+			time:after 		"1922" ^^xsd:gYear ;
+			foaf:agent     db:7382, db:7931 ;
+			dbo:basedOn		:decorPlanImage, :planStructure .  
+
+:decorPlanImage 		a 			foaf:Image ;
+			rdfs:comment 	"Ce décor a été reconstitué à partir de photographies anciennes et de plans originaux après l'incendie de 1922"@fr .
+				 
+:edifice   a    dbo:Building ; 
+		  dbo:dateUnveiled  "1640"^^xsd:gYear.
+		  
+:historicalInfos a owl:Thing;
+			rdfs:comment "Décrit les informations historiques du bâtiment"@fr ;
+			:hasEvent 	:event1, :event2, :event3, :event4, :event5, :event6, :event7, :event8, :event9, :event10, 
+						:event11, :event12, :event13, :event14, :event15, :event16, :event17, :event18, :event19, :event20, 
+						:event21, :event22, :event23, :event24, :event25, :event26, :event27, :event28, :event29, :event30,
+						:event31, :event32, :event33. 
+
+:event1 a event:Event;
+		rdfs:comment  "Octroiement des fonds pour agrandissement"@fr ;
+		event:agent 	dbr:Louis_XIV_of_France ;
+		event:time 		"1697"^^xsd:gYear.
+		
+:event2 a event:Event;
+		rdfs:comment  "Début de la construction de la façade"@fr ;
+		event:agent 	db:7233 ;
+		event:time 		"1684"^^xsd:gYear.
+
+:event3 a event:Event;
+		rdfs:comment  "Fin de la construction de la façade"@fr ;
+		event:agent 	db:7233 ;
+		event:time 		"1687"^^xsd:gYear.
+
+:event4 a event:Event;
+		rdfs:comment  "Rattachement du massif antérieur à l'église par le prolongement de la nef"@fr ;
+		event:agent 	db:7233 ;
+		event:time 		"1697"^^xsd:gYear.
+		
+:event5 a event:Event;
+		rdfs:comment  "Début de l'agrandissement de la cathédrale, Un choeur plus profond est construit et 
+		jouxté d'une sacristie au sud, des bas-côtés sont aménagés en prolongeant les extrémités du transept, 
+		des piliers sont formés avec les murs latéraux et surmontés d'une arcature et de fenêtres hautes, 
+		et une nouvelle façade, plus large et plus haute, remplace celle de Baillif."@fr ;
+		event:agent 	db:7363 ;
+		event:time 		"1744"^^xsd:gYear.
+		
+:event6 a event:Event;
+		rdfs:comment  "Fin de l'agrandissement de la cathédrale, Un choeur plus profond est construit et 
+		jouxté d'une sacristie au sud, des bas-côtés sont aménagés en prolongeant les extrémités du transept, 
+		des piliers sont formés avec les murs latéraux et surmontés d'une arcature et de fenêtres hautes, 
+		et une nouvelle façade, plus large et plus haute, remplace celle de Baillif."@fr ;
+		event:agent 	db:7363 ;
+		event:time 		"1748"^^xsd:gYear.
+
+:event7 a event:Event;
+		rdfs:comment  "Incendié lors du siège de Québec"@fr ;
+		event:time 		"1759"^^xsd:gYear.
+
+:event8 a event:Event;
+		rdfs:comment  "Début du rétablissement de la cathédrale selon les plans de Chaussegros de Léry plus un rajout d'un second lanternon au clocher et élargit les piliers de la nef"@fr ;
+		event:agent 	db:8551 ;
+		event:time 		"1768"^^xsd:gYear.
+		
+:event9 a event:Event;
+		rdfs:comment  "Fin du rétablissement de la cathédrale selon les plans de Chaussegros de Léry plus un rajout d'un second lanternon au clocher et élargit les piliers de la nef"@fr ;
+		event:agent 	db:8551 ;
+		event:time 		"1771"^^xsd:gYear.
+
+:event10 a event:Event;
+		rdfs:comment  "Début de la réalisation des retables, du baldaquin, des statues et du trône de l'évêque."@fr ;
+		event:agent 	db:8551, db:7228 ;
+		event:time 		"1787"^^xsd:gYear.
+		
+:event11 a event:Event;
+		rdfs:comment  "Fin de la réalisation des retables, du baldaquin, des statues et du trône de l'évêque."@fr ;
+		event:agent 	db:8551, db:7228 ;
+		event:time 		"1793"^^xsd:gYear.
+
+:event12 a event:Event;
+		rdfs:comment  "Livraison du maître autel"@fr ;
+		event:agent 	db:7228 ;
+		event:time 		"1797"^^xsd:gYear.
+
+:event13 a event:Event;
+		rdfs:comment  "Livraison du banc d'oeuvre"@fr ;
+		event:agent 	db:7228 ;
+		event:time 		"1799"^^xsd:gYear.
+
+:event14 a event:Event;
+		rdfs:comment  "Ornement de la façade d'un fronton et de retours de corniche"@fr ;
+		event:agent 	db:7228 ;
+		event:time 		"1818"^^xsd:gYear.
+
+:event15 a event:Event;
+		rdfs:comment  "Début de l'execution des fausses voûtes en plâtre"@fr ;
+		event:agent 	db:10159 ;
+		event:time 		"1819"^^xsd:gYear.
+		
+:event16 a event:Event;
+		rdfs:comment  "Fin de l'execution des fausses voûtes en plâtre"@fr ;
+		event:agent 	db:10159 ;
+		event:time 		"1822"^^xsd:gYear.
+
+:event17 a event:Event;
+		rdfs:comment  "Complétion du décor de la nef"@fr ;
+		event:agent 	db:7228 ;
+		event:time 		"1823"^^xsd:gYear.
+
+:event18 a event:Event;
+		rdfs:comment  "Retravaillage des retables latéraux"@fr ;
+		event:agent 	db:7230 ;
+		event:time 		"1825"^^xsd:gYear.
+
+:event19 a event:Event;
+		rdfs:comment  "Érigement de la sacristie contre le mur nord du choeur"@fr ;
+		event:time 		"1828"^^xsd:gYear.
+
+:event20 a event:Event;
+		rdfs:comment  "Proposition du projet de façade actuelle"@fr ;
+		event:agent 	db:7230 ;
+		event:time 		"1829"^^xsd:gYear.
+
+:event21 a event:Event;
+		rdfs:comment  "Début de la construction de la façade actuelle"@fr ;
+		event:agent 	db:7230 ;
+		event:time 		"1843"^^xsd:gYear.
+		
+:event22 a event:Event;
+		rdfs:comment  "Interruption des travaux de construction de la façade actuelle"@fr ;
+		event:agent 	db:7230 ;
+		event:time 		"1844"^^xsd:gYear.
+
+:event23 a event:Event;
+		rdfs:comment  "Conception de la clotûre en fonte qui délimite le parvis"@fr ;
+		event:agent 	db:7227 ;
+		event:time 		"1857"^^xsd:gYear.
+
+:event24 a event:Event;
+		rdfs:comment  "Élévation de la cathédrale au rang de basilique"@fr ;
+		event:time 		"1874"^^xsd:gYear.
+
+:event25 a event:Event;
+		rdfs:comment  "Annexation de la chapelle du Sacré-Coeur au bas-côté nord"@fr ;
+		event:time 		"1887"^^xsd:gYear.
+
+:event26 a event:Event;
+		rdfs:comment  "Revêtement du côté sud de l'édifice avec des pierres de taille"@fr ;
+		event:agent 	db:8003 ;
+		event:time 		"1890"^^xsd:gYear.
+
+:event27 a event:Event;
+		rdfs:comment  "Début de la couverture du chemin et construction de la chapelle Saint-Louis"@fr ;
+		event:agent 	db:8003 ;
+		event:time 		"1914"^^xsd:gYear.
+		
+:event28 a event:Event;
+		rdfs:comment  "Fin de la couverture du chemin et construction de la chapelle Saint-Louis"@fr ;
+		event:agent 	db:8003 ;
+		event:time 		"1916"^^xsd:gYear.
+
+:event29 a event:Event;
+		rdfs:comment  "La basilique est détruie par les flammes"@fr ;
+		event:time 		"1922"^^xsd:gYear.
+
+:event30 a event:Event;
+		rdfs:comment  "Début du rétablissement de l'édifice et de son décor à partir de photographies et de plans "@fr ;
+		event:agent 	db:7382, db:7931 ;
+		event:time 		"1923"^^xsd:gYear.	
+
+:event31 a event:Event;
+		rdfs:comment  "Fin du rétablissement de l'édifice et de son décor à partir de photographies et de plans "@fr ;
+		event:agent 	db:7382, db:7931 ;
+		event:time 		"1930"^^xsd:gYear.		
+
+:event32 a event:Event;
+		rdfs:comment  "Réalisation des cryptes où sont réunis les sépultures de la plupart des évêques de Québec et de quatre gouverneurs de la Nouvelle-France"@fr ;
+		event:agent 	db:12000;
+		event:time 		"1959"^^xsd:gYear.	
+		
+:event33 a event:Event;
+		rdfs:comment  "Début de la réalisation de la chapelle funéraire de François de Laval"@fr ;
+		event:agent 	db:10289;
+		event:time 		"1992"^^xsd:gYear.	
+
+:event34 a event:Event;
+		rdfs:comment  "Fin de la réalisation de la chapelle funéraire de François de Laval"@fr ;
+		event:agent 	db:10289;
+		event:time 		"1995"^^xsd:gYear.			
+		
+#################################################################
+#    Object Properties
+#################################################################
+
+p:mrc 		a			owl:ObjectProperty ;
+			rdfs:domain  dbo:Place ;
+			rdfs:range 	 dbo:Cathedral ;
+			rdfs:label    "Municipalité régionale de comté"@fr ;
+			rdfs:comment  "sont des entités administratives assurant la gestion régionale des municipalités locales"@fr .
+				  
+p:hasLocation	a		owl:ObjectProperty ;
+				rdfs:domain  :place ;
+			    rdfs:range 	dbo:Cathedral;
+				rdfs:comment  "la localisation d'un building"@fr.  
+
+p:municipality  a		owl:ObjectProperty ;
+				rdfs:domain  :place ;
+			    rdfs:range 	dbo:Cathedral;
+				rdfs:label    "Municipalité "@fr ;
+				rdfs:comment  "Une municipalité est l'administration territoriale d'une entité de type communal"@fr.
+
+p:hasComponent   a		owl:ObjectProperty ;
+				rdfs:domain  dbo:Cathedral ;
+			    rdfs:range 	   dbo:Building ;
+				rdfs:comment  "les éléments que contients la cathderale"@fr.
+				
+p:isRegsitredIn 	a		owl:ObjectProperty ;
+				rdfs:domain  dbo:Building ;
+			    rdfs:range 	dbr:territory ;
+				rdfs:label    "enregistréDans"@fr.
+
+p:patrimoineImmobiliéAssocié   	a		owl:ObjectProperty ;
+								rdfs:domain  dbo:Place ;
+								rdfs:range 	dbo:Place ;
+								rdfs:label   "Associated  Real Estate heritage "@en;
+								rdfs:comment  "Patrimoine immobilier associé Fait partie de : Basilique-cathédrale de Notre-Dame-de-Québec"@fr.
+
+p:patrimoineMobiliéAssocié	   a		owl:ObjectProperty ;
+								rdfs:domain  dbo:Place ;
+								rdfs:range 	dbr:Furniture ;
+								rdfs:comment  "Fait partie de : Collection archéologique de référence de Basilique-cathédrale de Notre-Dame-de-Québec"@fr.
+								
+								
+p:plaquesCommémoratives 			a		owl:ObjectProperty ;
+								rdfs:domain  dbo:Place ;
+								rdfs:range 	dbr:Furniture .
+								
+p:EvenementsAssociés 		a		owl:ObjectProperty ;
+								rdfs:domain  event:Event ;
+								rdfs:range 	 event:Event .
+								
+p:groupesAssociés 			a		owl:ObjectProperty ;
+								rdfs:domain  dbo:Place ;
+								rdfs:range 	 schema:Organization .
+                                
+p:personnesAssociés			a		owl:ObjectProperty ;
+								rdfs:domain  dbo:Place;
+								rdfs:range 	 foaf:Person;
+								rdfs:label   "Associated  personne "@en;
+								rdfs:comment  "ce sont les personne qui ont contribué et/ou était impliqué dans l'histoire de la Basilique-cathédrale de Notre-Dame-de-Québec"@fr.
+
+				
+p:hasValue		a		owl:ObjectProperty ;
+				rdfs:domain  dbo:Building ;
+			    rdfs:range 	:valeurPatrimoniale .
+
+p:hasStatus		a		owl:ObjectProperty ;
+				rdfs:domain  dbo:Building ;
+			    rdfs:range 	:Status .
+				
+p:hasHistoricalInfos a owl:ObjectProperty ;
+				rdfs:domain  dbo:Building ;
+			    rdfs:range 	:historicalInfos .
+				
+p::hasEvent a owl:ObjectProperty ;
+				rdfs:domain  :historicalInfos ;
+			    rdfs:range 	event:Event .
+				
+p:hasStructure  a  owl:ObjectProperty ;
+			   rdfs:domain  dbo:Building ;
+			   rdfs:range 	dbo:ArchitecturalStructure .
+			   
+p:isPartOf		a  owl:ObjectProperty ;
+			   rdfs:domain  dbo:Building ;
+			   rdfs:range 	dbr:territory .
+			  
+p:hasFacasde   a		owl:ObjectProperty ;
+				rdfs:domain  dbo:Cathedral ;
+			    rdfs:range 	 dbo:Building .
+
+p:reconstruitpar     a		owl:ObjectProperty ;
+				   rdfs:domain  dbo:Cathedral ;
+			       rdfs:range 	 foaf:Person ;
+				   rdfs:label   "constructed by "@en.
+				  
+
+				   
+
+p:hasPlan 	 a		owl:ObjectProperty ;
+			 rdfs:domain  dbo:Cathedral ;
+			 rdfs:range 	 foaf:Document .
+
+p:surmonte   a		owl:ObjectProperty ;
+				rdfs:domain dbo:Building ;
+			    rdfs:range 	 dbo:Building .
+				
+p:hasClassement     a		owl:ObjectProperty ;
+				   rdfs:domain  dbo:Cathedral ;
+			       rdfs:range    event:Event .
+
+p:hasDesignation     a		owl:ObjectProperty ;
+				   rdfs:domain  dbo:Cathedral ;
+			       rdfs:range    event:Event .				   
+p:hasDeclaration     a		owl:ObjectProperty ;
+				   rdfs:domain  dbo:Cathedral ;
+			       rdfs:range    event:Event .				   
+
+p:hasBecame     a		owl:ObjectProperty ;
+				   rdfs:domain  dbo:Cathedral ;
+			       rdfs:range    event:Event .				   
+
+p:reconstitution   a		owl:ObjectProperty ;
+			  :rdfs:domain  dbo:Building ;
+			   rdfs:range 	event:Event .		   				   
+				
+p:victimOf a owl:ObjectProperty ;
+		rdfs:domain    dbo:Building ;
+		rdfs:range 	   moac:Incident ;
+		rdfs:label   "Victime de"@en.
+
+		
+p:delimitedBy   a 		owl:ObjectProperty ;
+				rdfs:comment "Dénote un élément qui délimite une zone ou un building"@fr;
+				rdfs:domain dbo:Building ;
+			    rdfs:range 	 dbo:Building;
+				rdfs:label   "délimité par"@fr;
+			   rdfs:comment  "Élements qui délimites la Basilique-cathédrale de Notre-Dame-de-Québec"@fr.
+
+				
+
+#################################################################
+#    Data Properties
+#################################################################
+
+p:rebuildingEndYear   a		owl:ObjectProperty ;
+				   rdfs:comment "Définit l'année de fin de reconstruction d'un bâtiment"@fr ;
+				   rdfs:domain  dbo:Building ;
+			       rdfs:range 	 xsd:gYear .
+
+p:hasForme	 a		owl:DataProperty ;
+			 rdfs:comment "Définit la forme générale d'un bâtiment"@fr ;
+			 rdfs:domain  dbo:Building ;
+			 rdfs:range 	xsd:string .
+
+
+p:neighbourhood	a 		owl:DataProperty ;
+				rdfs:comment "Définis le quartier dans lequel une place est"@fr ; 
+				rdfs:domain  dbo:Place ;
+			    rdfs:range 	xsd:string .
+				
+p:dC				a 		owl:DataProperty ;
+				rdfs:comment "Défnit la désignation cadastracle d'une Place"@fr ;
+				rdfs:domain  dbo:Place ;
+			    rdfs:range 	xsd:string ;
+				rdfs:label  "Désignation cadastrale"@fr .
+				
+p:hasSurface	a	owl:DataProperty ;
+				rdfs:domain  dbo:territory ;
+			    rdfs:range 	 xsd:integer ;
+				rdfs:comment "c'est la surface d’un terrain, en hectare "@fr .
+
+p:restaurationYear  a		   owl:ObjectProperty ;
+				rdfs:comment "Donnes l'année de restauration d'un bâtiment"@fr ;
+				rdfs:label  "Année de restauration"@fr ;
+				rdfs:domain    dbo:Building ;
+			    rdfs:range 	   xsd:gYear .
+
+
+#################################################################
+#    Individuals
+#################################################################
+:gouv1   a		foaf:Person.
+:gouv2   a		foaf:Person.
+:gouv3   a		foaf:Person.
+:gouv4   a		foaf:Person.
+
+:retable a		dbr:Furniture ;
+		 rdfs:comment  "Le retable est une construction verticale qui porte des décors sculptés et/ou peints en arrière de la table d'autel d'un édifice religieux"@fr.
+		 
+:autel   a		dbr:Furniture ; 
+		 rdfs:comment  "Un autel est une table consacrée qui, est le lieu autour duquel se rassemble la communauté chrétienne pour celeberer "@fr.
+
+:chaire		 a		dbr:Furniture .
+		
+:bancOuvre a		dbr:Furniture ;
+		 rdfs:label   "Banc d'œuvre"@fr ;
+		 rdfs:comment   "Le banc d'œuvre ou banc de l'œuvre est un type de mobilier liturgique."@fr.
+			
+:mcc        a			dbo:GovernmentAgency ;
+			rdfs:label	"Ministre de la Culture et des Communications"@fr ;
+			rdfs:hasPage	<http://www.mcc.gouv.qc.ca/> ;
+			rdfs:comment 	"Le ministère de la Culture et des Communications est un ministère du gouvernement québécois"@fr.
+
+:clmhc 		a			schema:Organization ;
+			rdfs:label	"La Commission des lieux et monuments historiques du Canada"@fr ; 
+			rdfs:hasPage    <https://www.pc.gc.ca/fr/culture/clmhc-hsmbc> ; 
+			rdfs:comment "(CLMHC) est un organisme canadien qui reçoit les demandes du public concernant des lieux ou monuments 
+			                historiques que l'on aimerait protéger et qui conseille
+							le ministre de l'Environnement du gouvernement du Canada à leur propos"@fr.
+							
+:GouvQuébec    a			schema:Organization ;
+				rdfs:label 	"Gouvernement du Québec"@fr ;
+				rdfs:hasPage     <www.gouv.qc.ca/FR/Pages/accueil.aspx> ;
+				rdfs:comment   "Le gouvernement du Québec est l'organisme du pouvoir exécutif dans la province de Québec depuis 1867"@fr.
